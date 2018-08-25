@@ -285,13 +285,16 @@ def graph(formula, start, stop, t):
         expr2 = sympify(expr)
         YCors.append(expr2.evalf())
     t.penup()
-    t.goto(int(XCors[0]), int(YCors[0]))
+    try:
+        t.goto(int(XCors[0]), int(YCors[0]))
+    except Exception:
+        pass
     t.pendown()
     for i in range(len(XCors)):
         try:
             t.goto(int(XCors[i]), int(YCors[i]))
         except Exception:
-            return "The graph has generated complex numbers"
+            continue
     return "Graphing Equation Now"
 def CreateList(name):
     zero = [0]
